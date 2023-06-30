@@ -1,0 +1,1101 @@
+@import url("https://fonts.googleapis.com/css?family=Varela+Round&display=swap");
+
+body {
+  margin: 0;
+  font-size: 1.4em;
+  font-family: 'Varela Round', sans-serif;
+  background: url('images/bgBody.jpg');
+  height: 100%;
+}
+
+#header {
+  margin: 5px 8px 8px 8px;
+  padding: 0px 0px 0px 0px;
+  display: inline-block;
+  background: #fcebe1;
+  border-radius: 4px;
+  width: 99%;
+}
+
+#header #logo {
+  display: inline-block;
+  margin: 15px 15px 10px 15px;
+  padding: 0px 0px 0px 0px;
+  float: left;
+  width: 100%;
+}
+
+#nav {
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px; 
+  position: relative;
+  top: -10px;
+  left: 26.5%;
+  right: 26.5%;
+  background: url('images/bluegradient.png');
+  border-radius: 3.5px;
+  width: 810px;
+}
+
+#nav ul {
+  
+  position: relative;
+  left: -20px;
+  width: 800px;
+  list-style-type: none;
+  margin-bottom: 25px;
+  z-index: 1;
+  
+}
+
+#nav ul li {
+  display: inline;
+}
+
+#nav ul li a {
+  padding: 15px 15px 15px 15px;
+  text-decoration: none;
+  color: #fcebe1;
+  cursor: pointer;
+  border: 2px solid #fcebe1;
+  border-radius: 2px;
+}
+
+#nav ul li a.here:link,
+#nav ul li a.here:visited,
+#nav ul li a.here:active {
+  background: #fcebe1;
+  border-radius: 2.5px;
+  color: #65c3f8;
+  cursor: pointer;
+}
+
+#nav ul li a:hover {
+  background: #fcebe1;
+  border-radius: 2.5px;
+  color: #65c3f8;
+  cursor: pointer;
+
+}
+
+/* the landing page body */
+
+#wrapland {
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  position: absolute;
+  left: 21%;
+  right: 21%;
+  width: 1000px;
+  /*background: #65c3f8;*/
+  background: url('images/bluegradient.png');
+  border-left: 3px solid #fcebe1;
+  border-right: 3px solid #fcebe1;
+  color: #fcebe1;
+  border-radius: 5px;
+  height: 900px;
+}
+
+#masthead {
+  margin: 20px 20px 0 20px;
+}
+
+div#content {
+  float: right;
+  margin: 10px 0 0 0;
+  padding: 0 20px 0 20px;
+  width: 640px;
+}
+
+h1#landing  {
+  margin: 0 0 20px 0;
+}
+
+p {
+  margin: 0 0 20px 0;
+  line-height: 1.4em;
+}
+
+#sidebar { float: left; margin: 20px 0 0 0; padding: 0 20px 0 20px; width: 180px; }
+
+#footer {
+  margin: 20px 20px 0 20px;
+  padding: 10px 20px 10px 20px;
+  clear: both;
+  text-align: center;
+  color: #fcebe1;
+}
+
+#footer p {
+  margin: 10px 0 0 0;
+  font-size: small;
+}
+
+/* styling of the form */
+
+#form_wrap1 {
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  left:  29.7%;
+  right: 29.7%;
+  position: relative;
+  text-align: center;
+  height: 900px;
+  width: 700px;
+  border: 2px solid #fcebe1;
+  border-radius: 5px;
+
+}
+
+h1.form {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  margin-left: 15%;
+  margin-right: 15%;
+  color: #fcebe1;
+}
+
+h3.form {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  margin-left: 15%;
+  margin-right: 15%;
+  color: #fcebe1;
+}
+
+
+
+div#wrapform {
+  left: 23px;
+  position: relative;
+  top: 7px;
+  height: 480px;
+  width: 650px;
+  border: 2px solid #fcebe1;
+  padding-bottom: 20px;
+  background: url('images/bluegradient.png');
+  border-radius: 5px;
+}
+
+input#SubBut {
+position: relative;
+left: 10px;
+top: 40px;
+background: url('images/bluegradient.png');
+color: #fcebe1;
+height: 55px;
+width: 170px;
+font-size: 1.1em;
+border-radius: 5px;
+font-family: 'Varela Round', sans-serif;
+border: 2px solid #fcebe1; 
+}
+
+input#SubBut:hover {
+  background: #fcebe1;
+  border-radius: 2.5px;
+  color: #65c3f8;
+  cursor: pointer;
+  border-radius: 5px;
+
+}
+
+table {
+  padding: 20px;
+  
+}
+
+th, td {
+  padding: 5px;
+  color: #fcebe1;
+}
+
+/* styling of the log in page */
+
+.login {
+  position: absolute;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  float: right;
+  top: 13.5%;
+  right: 1%;
+  font-family: 'Varela Round', sans-serif;
+  color: #F89A65;
+  }
+
+.login2 {
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  position: relative;
+  float: left;
+  left: 330px;
+  top: 110px;
+  margin-top: 10px;
+  font-family: 'Varela Round', sans-serif;
+  color: #F89A65;
+  }
+  
+  
+.error {
+  position: relative;
+  text-align: center;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  top: 20px;
+  font-family: 'Varela Round', sans-serif;
+  color: #fcebe1;
+  z-index: 11;
+  }
+
+  #errorTest {
+    position: relative;
+    text-align: center;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    top: 20px;
+    font-family: 'Varela Round', sans-serif;
+    color: #fcebe1;
+    display: none;
+    }
+
+  
+  
+  #log {
+    margin: 0px 0px 0px 0px;
+    padding: 10px 5px 20px 28px;
+    left:  38.4%;
+    right: 38.4%;
+    position: relative;
+    width: 400px;
+    font-size: 1.2em;
+    font-family: 'Varela Round', sans-serif;
+    background: url('images/bluegradient.png');
+    color: #fcebe1;
+    border-radius: 4px;
+    border: 2px solid #fcebe1;
+  }
+  
+  input#logBut {
+    margin: 15px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    left:  45.5%;
+    right: 45.5%;
+    position: relative;
+    background: url('images/bluegradient.png');
+    color: #fcebe1;
+    height: 55px;
+    width: 170px;
+    font-size: 1.1em;
+    border-radius: 4px;
+    font-family: 'Varela Round', sans-serif;
+    border: 2px solid #fcebe1;
+  }
+
+  input#logBut:hover {
+    background: #fcebe1;
+    border-radius: 2.5px;
+    color: #65c3f8;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  
+
+  /* working page */
+
+  #wrapwork {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    position: relative;
+    top: -90px;
+    left: 23.9%;
+    right: 23.9%;
+    /*left: 120px;*/
+    width: 900px;
+    height: 555.84px;
+    border: 2px solid #fcebe1;
+    background: url('images/bluegradient.png');
+    border-radius: 5px;  
+  }
+
+  .overlay
+  {
+    background-color: #000;
+    opacity: .65;
+    filter: alpha(opacity=50);
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 9;
+  }
+  
+  .overlaymsg
+  {
+    text-align: center;
+    display: block;
+    width: 500px;
+    height: 500px;
+    border: 7px solid #65c3f8;
+    color: #fcebe1;
+    border-radius: 5px;
+    opacity: .8;
+    position: absolute;
+    background-color: #F89A65;
+    padding: 10px 10px 10px 10px;
+    font-size: 2em;
+    z-index: 10;
+    top: 30%;
+    left: 40%;
+    margin-left: -100px;
+    margin-top: -100px;
+  }
+
+  .testBut{
+    position: relative;
+    opacity: .9.9;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: 7px;
+    color:  #fcebe1;
+    font-family: 'Varela Round', sans-serif;
+    background-color: #65c3f8;
+    font-size: 100%;
+    display: block;
+    height: 100px;
+    width: 370px;
+    border: 7px solid #fcebe1;
+    z-index: 11;
+    font-size: .9em;
+    top: 5%;
+    left: 12.3%;
+    margin: 15px 5px 5px 5px;
+  }
+
+  .testBut:hover {
+      cursor: pointer;
+      color:  #65c3f8;
+      background-color: #fcebe1;
+      border: 7px solid #fcebe1;
+    }
+ 
+  #controls {
+    position: relative;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    display: inline;
+    left: 535px;
+    top: 440px;
+    z-index: 2;
+  }
+
+  #load {
+    background: url('images/load.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: 7px;
+    font-family: 'Varela Round', sans-serif;
+    background-color: #fcebe1;
+    font-size: 100%;
+    display: inline-block;
+    width: 75px;
+    height: 75px;
+    border: 2px solid #fcebe1;
+    margin: 0px 0px 0px 0px;
+  }
+
+  #load:hover {
+    cursor: pointer;
+  }
+
+  #start {
+    background: url('images/playbutton.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: 7px;
+    font-family: 'Varela Round', sans-serif;
+    color: #fcebe1;
+    font-size: 100%;
+    display: inline-block;
+    width: 75px;
+    height: 75px;
+    border: 2px solid #fcebe1;
+    margin-top: 0px 0px 0px 0px;
+  }
+
+  
+
+  #start:hover {
+    background: url('images/playbutton.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: #fcebe1;
+    border-radius: 7px;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 100%;
+    cursor: pointer;
+  }
+  
+  #pause {
+    background: url('images/pause.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: 7px;
+    font-family: 'Varela Round', sans-serif;
+    color: #fcebe1;
+    font-size: 100%;
+    display: inline-block;
+    width: 75px;
+    height: 75px;
+    border: 2px solid #fcebe1;
+    margin-top: 0px 0px 0px 0px;
+  }
+
+  #pause:hover {
+    background: url('images/pause.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: #fcebe1;
+    border-radius: 7px;
+    font-family: 'Varela Round', sans-serif;
+    color: #65c3f8;
+    font-size: 100%;
+    cursor: pointer;
+  }
+  
+  #stop {
+    background: url('images/stop.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: 7px;
+    font-family: 'Varela Round', sans-serif;
+    color: #fcebe1;
+    font-size: 100%;
+    display: inline-block;
+    width: 75px;
+    height: 75px;
+    border: 2px solid #fcebe1;
+    margin-top: 0px 0px 0px 0px;
+  }
+
+  #stop:hover {
+    background: url('images/stop.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: #fcebe1;
+    border-radius: 7px;
+    font-family: 'Varela Round', sans-serif;
+    color: #65c3f8;
+    font-size: 100%;
+    cursor: pointer;
+  }
+
+  #meadow {
+    border-radius: 20px;
+    position: relative;
+    padding: 0px 0px 0px 0px;
+    margin: 15px 15px 15px 15px;
+    top: -70px;
+    
+  }
+
+  #inner1 {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    position: absolute;
+    height: 555.84px;;
+    width: 343.28px;
+    border: 2px solid  #fcebe1;
+    left: 555px;
+    border-top: none;
+    border-bottom: none;
+    border-radius: 2px;
+    display: inline-block;
+    float: right;
+  }
+  
+  #inner2 {
+    position: absolute;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    position: relative;
+    height: 212px;
+    width: 343.28px;
+    top: -218px;
+    left: 556px;
+    border: 2px solid  #fcebe1;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    border-radius: 2px;
+  }
+  
+  #inner3 {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    position: relative;
+    height: 212px;
+    width: 130.93px;
+    border: 2px solid  #fcebe1;
+    border-left: none;
+    border-bottom: none;
+    border-top: none;  
+  }
+
+
+  p#answerp{
+    position: relative;
+    height: 20px;
+    width: 120px;
+    z-index: 3;
+    top: 345px;
+    left: 5px;
+    font-family: 'Varela Round', sans-serif;
+    font-size: .7em;
+    color: #fcebe1;
+    text-align: center;
+  }
+  
+
+.label
+{
+  position: absolute;
+  left: 13px;
+  top: .5px;
+  width: 80%;
+  margin: 15px 10px 0px 10px;
+  padding: 10px 10px 10px 10px;
+  background: #F89A65;
+  font-family: 'Varela Round', sans-serif;
+  color: #fcebe1;
+  text-align: center;
+  border: 3px solid  #fcebe1;
+  border-radius: 5px;
+}
+
+.label:hover {
+cursor: pointer;
+}
+
+.elements
+{
+  position: absolute;
+  left: 13px;
+  top: 110px;
+  margin: 15px 10px 10px 10px;;
+  padding: 10px 10px 10px 10px;
+  background-color: #fcebe1;
+  font-family: 'Varela Round', sans-serif;
+  border: 3px solid  #F89A65;
+  width: 80%;
+  border-radius: 5px; 
+}
+
+.show {
+  padding: 0px 0px 0px 0px;
+  width: 32%;
+  display: block;
+}
+
+.hidden {
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  visibility: hidden;  
+}
+
+.contain1 {
+    display: inline-block;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    position: relative;
+    float: right;
+    top: -209px;
+    right: 26px;
+    height: 85px;
+    width: 85px;
+    object-fit: cover;
+    border: 3px solid  #65c3f8;
+    border-radius: 11px;
+  }
+  
+.contain {
+    margin: 5px 5px 5px 0px;
+    padding: 0px 0px 0px 0px;
+    position: relative;
+    float: right;
+    height: 195px;
+    width: 195px;
+    object-fit: contain;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    padding: 0px 0px 0px 0px;
+    border: 2px solid white;
+    border-radius: 5px;
+  }
+
+
+/* edit picture page */
+  #picLabel {
+    position: relative;
+    color: #fcebe1;
+
+  }
+
+  #profileBut {
+    padding: 5px 5px 5px 5px;
+    font-size: .9em;
+    color: #fcebe1;
+    background: #65c3f8;
+    height: 30px;
+    width: 270px;
+    border: 2px solid #fcebe1;
+    border-radius: 2.5px;
+  }
+
+  #picSelect {
+    padding: 4px 4px 4px 4px;
+    text-align: center;
+    position: relative;
+    width: 30%;
+    left: 600px;
+  }
+
+  #picSub {
+    position: relative;
+    font-size: .9em;
+    color: #fcebe1;
+    background: #65c3f8;
+    height: 40px;
+    width: 80px;
+    border: 2px solid #fcebe1;
+    border-radius: 2.5px;
+    left: 10px;
+  }
+  #picSub:hover {
+    cursor: pointer;
+    color: #65c3f8;
+    background: #fcebe1;
+    border: 2px solid #fcebe1;
+    border-radius: 2.5px;
+  }
+
+  
+
+/* concept et all pages */
+
+  #wrapwork_concept {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    position: relative;
+    top: -12px;
+    left: 23.9%;
+    right: 23.9%;
+    /*left: 120px;*/
+    width: 900px;
+    height: 555.84px;
+    border: 2px solid #fcebe1;
+    background: url('images/bluegradient.png');
+    border-radius: 5px;  
+  }
+
+  p#toolMessage{
+    font-size: 1.9em;
+    color:#fcebe1;
+    margin: 10px 10px 10px 10px;
+    text-align: center;
+    position: relative;
+    top: 100px;
+    left: 60px;
+    height: 160px;
+    width: 180px;
+    z-index: 13;
+  }
+  
+
+  #inner1_concept {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    position: absolute;
+    height: 555.84px;;
+    width: 343.28px;
+    border: 2px solid  #fcebe1;
+    left: 555px;
+    border-top: none;
+    border-bottom: none;
+    border-radius: 2px;
+    display: inline-block;
+    float: right;
+  }
+  
+  #inner2_concept {
+    position: absolute;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    position: relative;
+    height: 212px;
+    width: 343.28px;
+    top: 343px;
+    left: 557px;
+    border: 2px solid  #fcebe1;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    border-radius: 2px;
+  }
+  
+  #inner3_concept {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    position: relative;
+    height: 212px;
+    width: 130.93px;
+    border: 2px solid  #fcebe1;
+    border-left: none;
+    border-bottom: none;
+    border-top: none;  
+  }
+
+  #tool_table_verb {
+    margin: 0px 0px 0px 0px;
+    position: absolute;
+    top: 70px;
+    left: 140px;
+    padding: 15px 15px 15px 15px;
+    height: 250px;
+    width:  250px;
+    border: 2.5px solid #fcebe1;
+    border-radius: 4.5px; 
+    background: #F89A65;
+}
+
+#button, #button2, #button3, #button4 {
+  font-size:.6.5em;
+  height: 30px;
+  width: 120px;
+  position: relative;
+  color: #fcebe1;
+  margin: 11px 5px 5px 5px;
+  left: 60px;
+  border-radius: 2.5px; 
+  background: #65c3f8;
+  border: 3px solid #fcebe1;
+}
+
+#button5 {
+  font-size:.8em;
+  height: 30px;
+  width: 120px;
+  position: relative;
+  color: #65c3f8;
+  margin: 11px 5px 5px 5px;
+  left: 60px;
+  border-radius: 2.5px; 
+  background: #fcebe1;
+  border: 3px solid #fcebe1;
+}
+
+#button, #button2, #button3, #button4, #button5:hover {
+  cursor: pointer;
+}
+
+#button5:hover {
+  cursor: pointer;
+}
+
+#verb_readout {
+  position: absolute;
+  top: 380px;
+  left: 125px;
+  margin: 15px 15px 15px 15px;
+  padding: 15px 15px 15px 15px;
+  height: 50px;
+  width:  250px;
+  font-size: 1.1em;
+  text-align: center;
+  border: 2.5px solid #fcebe1;
+  border-radius: 4.5px; 
+  background: #F89A65;
+  color: #fcebe1;
+}
+
+.cph_outer {
+  top: 25px;
+  left: 26.5px;
+  position: absolute;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  height: 244px;
+  width: 300px;
+}
+
+.concept_button_holder {
+  position: relative;
+  margin: 0px 0px 0px 0px;
+  padding: 5px 5px 5px 5px;
+  height: 234px;
+  width: 275px;
+  border: 2px solid #fcebe1;
+  border-radius: 2.5px; 
+  background: #F89A65;
+  overflow-y: auto;
+}
+
+#concept_video_holder {
+  position: relative;
+  margin: 0px 0px 0px 0px;
+  padding: 5px 5px 5px 5px;
+  height: 234px;
+  width: 275px;
+  border: 2px solid #fcebe1;
+  border-radius: 2.5px; 
+  background: #F89A65;
+  overflow-y: auto;
+  visibility: inherit;
+}
+
+#tool_verb {
+  font-weight: bold;
+  display: inline;
+  padding: 0px 0px 0px 0px;
+  margin: 2px 2px 2px 2px;
+  height: 55px;
+  width: 55px;
+  position: relative;
+  border-radius: 3.5px;
+  color: #65c3f8;
+  background: #fcebe1;
+  border: 2px solid #fcebe1
+}
+  
+#tool_chat {
+  display: inline;
+  font-weight: bold;
+  padding: 0px 0px 0px 0px;
+  margin: 2px 2px 2px 2px;
+  height: 55px;
+  width: 55px;
+  position: relative;
+  border-radius: 3.5px;
+  color: #65c3f8;
+  background: #fcebe1;
+  border: 2px solid #fcebe1
+}
+
+#tool_sen {
+  display: inline;
+  font-weight: bold;
+  padding: 0px 0px 0px 0px;
+  margin: 2px 2px 2px 2px;
+  height: 55px;
+  width: 95px;
+  position: relative;
+  border-radius: 3.5px;
+  color: #65c3f8;
+  background: #fcebe1;
+  border: 2px solid #fcebe1
+}
+
+.tool_blank {
+  font-weight: bold;
+  display: inline;
+  padding: 0px 0px 0px 0px;
+  margin: 2px 2px 2px 2px;
+  height: 55px;
+  width: 55px;
+  opacity: .6;
+  position: relative;
+  border-radius: 3.5px;
+  color: #65c3f8;
+  background: #fcebe1;
+  border: 2px solid #fcebe1;
+}
+
+.tool_blank:hover {
+  cursor: pointer;
+  color: #fcebe1;
+  background: #65c3f8;
+}
+
+#tool_sen:hover {
+  cursor: pointer;
+  color: #fcebe1;
+  background: #65c3f8;
+}
+
+#tool_chat:hover {
+  cursor: pointer;
+  color: #fcebe1;
+  background: #65c3f8;
+}
+
+#tool_verb:hover {
+  cursor: pointer;
+  color: #fcebe1;
+  background: #65c3f8;
+}
+
+
+
+#tool_verb, #tool_chat, #tool_sen:hover {
+  cursor: pointer;
+  
+}
+
+div#contain_chat {
+  position: absolute;
+  top: 33px;
+  left: 65px;
+  background:#F89A65;
+  height: 450px;
+  padding: 15px 15px 15px 15px;
+  width: 400px;
+  border: 2.5px solid #fcebe1;
+  border-radius: 2.5px;
+  display: inline-block;
+}
+
+
+
+div#letBut_chat {
+  position: relative;
+  padding: 5px 5px 5px 5px;
+  background: #F89A65;
+  top: 10px;
+  left: 55px;
+  padding: 5px 5px 5px 5px;
+  height: 220px;
+  width: 270px;
+  border: 2.5px solid #fcebe1;
+  border-radius: 2.5px;
+}
+
+.wordBut{
+  font-size: .8em;
+  color:#fcebe1;
+  background:#65c3f8;
+  padding: 2px 2px 2px 2px;
+  margin: 1.5px 1.5px 1.5px 1.5px;
+  border: 1.7px solid #fcebe1;
+  border-radius: 2.5px;
+  height: 40px;
+  width: 60px;
+}
+.wordBut:hover {
+  cursor: pointer;
+}
+
+input_chat {
+  margin: 3px 3px 3px 3px;
+}
+
+#clearBut_chat {
+  position: relative;
+  top: -45.5px;
+  left: 205px;
+  color:#65c3f8;
+  background:#fcebe1;
+  margin: 2px 2px 2px 2px;
+  border-radius: 2.5px;
+  height: 40px;
+  width: 120px;
+  font-size: .8em;
+  border: 1px solid #fcebe1;
+}
+
+#clearBut_chat:hover {
+  cursor: pointer;
+}
+
+#readout_chat {
+  border: 2.5px solid #fcebe1;
+  border-radius: 2.5px;
+}
+
+#sentMaker {
+  height: 400px;
+  position: absolute;
+  top: 30px;
+  left: 105px;
+  border: 2.5px solid #fcebe1;
+  border-radius: 2.5px;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  background: #F89A65;
+}
+
+#sentResult {
+  text-align: center;
+  position: absolute;
+  top: 450px;
+  left: 45px;
+  height: 30px;
+  width: 450px;
+  border: 2.5px solid #fcebe1;
+  border-radius: 2.5px;
+  padding: 3.5px 5px 5px 5px;
+  margin: 0px 0px 0px 0px;
+  background: #F89A65;
+  color:#fcebe1;
+}
+
+button#makeSentence {
+position: relative;
+height: 50px;
+left: -1px;
+width: 160px;
+color: #fcebe1;
+background: #65c3f8;
+border: 2.5px solid #fcebe1;
+border-radius: 2.5px;
+font-size:.9em;
+}
+
+button#clearSent {
+  position: relative;
+  height: 50px;
+  left: 1px;
+  width: 160px;
+  color: #fcebe1;
+  background: #65c3f8;
+  border: 2.5px solid #fcebe1;
+  border-radius: 2.5px;
+  font-size:.9em;
+  }
+
+button#makeSentence:hover {
+  cursor: pointer;
+  background:#fcebe1;
+  color: #65c3f8;
+}
+
+button#clearSent:hover {
+  cursor: pointer;
+  background:#fcebe1;
+  color: #65c3f8; 
+}
+
+input#testSubmit{
+  color: #fcebe1;
+  background: #65c3f8;
+  border: 3px solid #fcebe1;
+  border-radius: 4px;
+  font-size:.9em;
+  height: 60px;
+  width: 120px;
+  position: relative;
+  left: 800px;
+  top: -5px;
+}
+
+input#testSubmit:hover {
+  cursor: pointer;
+  background:#fcebe1;
+  color: #65c3f8; 
+}
+
+#testings1{
+  position: relative;
+  left: 680px;
+  color:#fcebe1;
+}
+
+
