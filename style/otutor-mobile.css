@@ -1,0 +1,143 @@
+/* Phone and iPad layout. Desktop rules in fibonlanding.css stay as they are. */
+
+.nav-toggle {
+  display: none;
+}
+
+img,
+video,
+iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 900px) {
+  body {
+    font-size: 1.05rem;
+    overflow-x: hidden;
+  }
+
+  #header {
+    display: block;
+    width: auto;
+    margin: 0.4rem;
+    padding: 0.6rem 0.7rem 0.8rem;
+    overflow: hidden;
+  }
+
+  #header #logo,
+  #innerlogo {
+    float: none;
+    width: auto;
+    max-width: 100%;
+  }
+
+  .nav-toggle {
+    display: inline-block;
+    min-height: 3rem;
+    min-width: 3rem;
+    margin: 0 0 0.6rem;
+    padding: 0 1.1rem;
+    border: 2px solid #243844;
+    border-radius: 999px;
+    background: #f09447;
+    color: #243844;
+    font-family: "Varela Round", sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  #nav,
+  #nav_work {
+    display: none;
+    position: static;
+    left: auto;
+    right: auto;
+    width: auto;
+    max-width: none;
+    margin: 0.4rem;
+  }
+
+  body.nav-open #nav,
+  body.nav-open #nav_work {
+    display: block;
+  }
+
+  #nav ul,
+  #nav_work ul {
+    position: static;
+    left: auto;
+    width: auto;
+    margin: 0;
+    padding: 0.4rem;
+  }
+
+  #nav ul li,
+  #nav_work ul li {
+    display: block;
+    margin: 0.35rem 0;
+  }
+
+  #nav ul li a,
+  #nav_work ul li a {
+    display: block;
+    min-height: 3rem;
+    padding: 0.85rem 1rem;
+    box-sizing: border-box;
+  }
+
+  #wrapland,
+  #form_wrap1,
+  #wrapform,
+  #log,
+  #wrapwork,
+  .overlaymsg,
+  .testBut,
+  #content,
+  #sidebar {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    float: none;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    margin: 0.75rem;
+    box-sizing: border-box;
+  }
+
+  .login,
+  .login2,
+  .login3 {
+    position: static;
+    float: none;
+    left: auto;
+    right: auto;
+    top: auto;
+    margin: 0.4rem 0 0;
+    text-align: center;
+  }
+
+  .login3 a {
+    display: inline-block;
+    min-height: 3rem;
+    line-height: 3rem;
+    margin: 0 0.4rem;
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    max-width: 100%;
+    min-height: 2.75rem;
+    font-size: 16px;
+  }
+
+  table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+}
