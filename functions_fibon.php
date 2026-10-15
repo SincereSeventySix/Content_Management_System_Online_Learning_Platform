@@ -61,6 +61,56 @@ define('GW_MAXFILESIZE', 64768);
     return $stmt;
   }
 
+  function otutorIdent($name)
+  {
+    if (!is_string($name) || !preg_match('/^[A-Za-z0-9_]+$/', $name)) die("Fatal Error");
+    return $name;
+  }
+
+  function otutorUserTable($suffix)
+  {
+    $allowed = array('_les_order', '_saved_vid', '_tools', '_games');
+    if (!in_array($suffix, $allowed, true)) die("Fatal Error");
+    if (!isset($_SESSION['user_id'], $_SESSION['username'])) die("Fatal Error");
+    $id = (int) $_SESSION['user_id'];
+    $user = preg_replace('/[^A-Za-z0-9_]/', '', (string) $_SESSION['username']);
+    if ($user === '') die("Fatal Error");
+    return otutorIdent($id . $user . $suffix);
+  }
+
+  function otutorRows($sql, $types, $values)
+  {
+    $stmt = otutorPrepare($sql);
+    if ($types !== '') {
+      $bind = array($types);
+      foreach ($values as $i => $value) {
+        $bind[] = &$values[$i];
+      }
+      call_user_func_array(array($stmt, 'bind_param'), $bind);
+    }
+    $stmt->execute();
+    $meta = $stmt->result_metadata();
+    if (!$meta) {
+      $stmt->close();
+      return array();
+    }
+    $row = array();
+    $refs = array();
+    while ($field = $meta->fetch_field()) {
+      $refs[] = &$row[$field->name];
+    }
+    call_user_func_array(array($stmt, 'bind_result'), $refs);
+    $rows = array();
+    while ($stmt->fetch()) {
+      $copy = array();
+      foreach ($row as $key => $value) $copy[$key] = $value;
+      $rows[] = $copy;
+    }
+    $meta->free();
+    $stmt->close();
+    return $rows;
+  }
+
   function sanitizeString($var)
   {
     global $connection;

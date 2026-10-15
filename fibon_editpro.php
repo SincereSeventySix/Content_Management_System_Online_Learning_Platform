@@ -57,8 +57,12 @@ if (!empty($profile)) {
           $target = GW_UPLOADPATH . $profile;
           if (move_uploaded_file($_FILES['profile']['tmp_name'], $target)) {
             
-            $query = "UPDATE student_info_1 SET profile = '$profile' WHERE user_id = $user "; // Write the data to the database
-            mysqli_query($dbc, $query);
+            $profile = basename($profile);
+            $user = (int) $user;
+            $stmt = $dbc->prepare("UPDATE student_info_1 SET profile = ? WHERE user_id = ?");
+            $stmt->bind_param("si", $profile, $user);
+            $stmt->execute();
+            $stmt->close();
 
             echo '<p>Thanks for adding a picture, '.  $_SESSION['username'] . '!</p>'; // Confirm success with the user
             echo '<p><a href="fibon_fibon.php">Return to Otutor</a></p>';

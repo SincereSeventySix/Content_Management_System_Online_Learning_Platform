@@ -1,0 +1,10 @@
+FILE: startsession.php
+
+WHAT CHANGED
+Removed the block that copied user_id and username from cookies into the session. Anyone who could set that cookie was logged in without a password.
+
+----- REAL FILE BELOW -----
+
+<?php
+session_start();
+?>

@@ -1,0 +1,34 @@
+FILE: fibon_fibon.php
+
+WHAT CHANGED
+The test flag is read with SELECT test FROM student_info_1 WHERE user_id = ?. The column name is no longer a variable pasted into the query, and the page uses the connection from functions_fibon.php instead of a second login as root.
+
+----- REAL FILE BELOW -----
+
+<?php
+  require_once('functions_fibon.php');
+  require_once('fibon_header_loggedin.php');
+  require_once('fibon_login_checks.php');
+
+  $error_msg = "";
+  $error_msg = 'Welcome back, ' . $_SESSION['username'] . '. You are logged into Otutor.';
+  echo '<p class="login">' . $error_msg . '</p>';
+   
+  $testVal = 'test';
+  $session_user = $_SESSION['username'];
+  $dbc = $connection;
+  $rows = otutorRows("SELECT test FROM student_info_1 WHERE user_id = ?", "i", array((int) $_SESSION['user_id']));
+  $teval = isset($rows[0]['test']) ? $rows[0]['test'] : 0;
+
+    if ($teval == 0) {
+      echo '<p id="errorTest">Test not Taken</p>'; 
+      require_once('fibon_video.php');  
+    } 
+    elseif ($teval == 1) {
+      echo '<p id="errorTest">Test Taken</p>';
+      require_once('fibon_video.php');      
+      }    
+  
+?>
+
+

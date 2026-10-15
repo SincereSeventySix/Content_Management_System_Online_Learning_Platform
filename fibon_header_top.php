@@ -28,7 +28,7 @@
         <?php
         $error_msg = "";
         if (!isset($_SESSION['user_id'])) {
-         echo '<p class="login3"><a href="fibon_login.php">Log In</a><a href="fibon_form.php">Sign Up</a></p>';
+         echo '<p class="login3"><a href="fibon_login.php">Log In</a><a href="fibon_form.php">Sign Up</a><a href="app/index.html">New login</a></p>';
          } else {
          echo '<p class="login">' . $error_msg . '</p>';
          }

@@ -1,0 +1,48 @@
+<?php
+session_start();
+require_once(__DIR__ . '/../functions_fibon.php');
+header('Content-Type: application/json');
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+  http_response_code(405);
+  echo json_encode(array('error' => 'Send a POST request.'));
+  exit();
+}
+
+$body = json_decode(file_get_contents('php://input'), true);
+if (!is_array($body)) $body = $_POST;
+$username = isset($body['username']) ? trim($body['username']) : '';
+$password = isset($body['password']) ? $body['password'] : '';
+
+if ($username === '' || $password === '') {
+  http_response_code(400);
+  echo json_encode(array('error' => 'Username and password are required.'));
+  exit();
+}
+
+$stmt = otutorPrepare("SELECT user_id, username, password FROM student_info_1 WHERE username = ?");
+$stmt->bind_param("s", $username);
+$stmt->execute();
+$stmt->bind_result($user_id, $username_row, $password_row);
+$found = $stmt->fetch();
+$stmt->close();
+
+if (!$found || !otutorPasswordOk($password, $password_row)) {
+  http_response_code(401);
+  echo json_encode(array('error' => 'That username and password do not match.'));
+  exit();
+}
+
+$info = password_get_info($password_row);
+if ($info['algo'] === 0 || password_needs_rehash($password_row, PASSWORD_DEFAULT)) {
+  $upgraded = otutorPasswordHash($password);
+  $update = otutorPrepare("UPDATE student_info_1 SET password = ? WHERE user_id = ?");
+  $update->bind_param("si", $upgraded, $user_id);
+  $update->execute();
+  $update->close();
+}
+
+session_regenerate_id(true);
+$_SESSION['user_id'] = $user_id;
+$_SESSION['username'] = $username_row;
+echo json_encode(array('ok' => true, 'username' => $username_row));

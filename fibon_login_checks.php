@@ -10,19 +10,10 @@ if (!isset($_SESSION['user_id'])) {
 else 
 {
   
-  $dbc = $connection;
-  // Grab the profile data from the database
-  if (!isset($_GET['user_id'])) 
-  {
-  $query = "SELECT profile FROM student_info_1 WHERE user_id = '" . $_SESSION['user_id'] . "'";
-  }
-  else {
-  $query = "SELECT profile FROM student_info_1 WHERE user_id = '" . $_GET['user_id'] . "'";
-              }
-  $data = queryMysql($query);
+  $rows = otutorRows("SELECT profile FROM student_info_1 WHERE user_id = ?", "i", array((int) $_SESSION['user_id']));
+  $row = isset($rows[0]) ? $rows[0] : null;
 
-  if (mysqli_num_rows($data) == 1) {
-    $row = mysqli_fetch_array($data);    
+  if ($row) {
       if (!empty($row['profile'])) 
         {
         require_once('fibon_nav_work.php');
@@ -38,7 +29,6 @@ else
   {
   echo '<p class="login">There was a problem accessing your profile.</p>';
   }
-  mysqli_close($dbc);
   }
 ?>
 

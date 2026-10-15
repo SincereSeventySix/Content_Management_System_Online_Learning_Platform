@@ -1,0 +1,36 @@
+<?php
+session_start();
+require_once(__DIR__ . '/../functions_fibon.php');
+header('Content-Type: application/json');
+
+if (!isset($_SESSION['user_id'], $_SESSION['username'])) {
+  http_response_code(401);
+  echo json_encode(array('error' => 'Log in first.'));
+  exit();
+}
+
+$defaults = array(
+  array('id' => 1, 'name' => 'Nouns: The Biggest Family', 'code' => 'less_nouns1', 'done' => false, 'current' => true),
+  array('id' => 2, 'name' => 'Pronouns: Professional Nouns', 'code' => 'less_proN1', 'done' => false, 'current' => false),
+  array('id' => 3, 'name' => 'Verbs: The Sentencevile Doers', 'code' => 'less_verbs1', 'done' => false, 'current' => false),
+  array('id' => 4, 'name' => 'Adjectives: Fishing for Fun', 'code' => 'less_adj1', 'done' => false, 'current' => false),
+);
+
+$table = otutorUserTable('_les_order');
+$result = $connection->query("SELECT u_lesson_id, les_name, les_loc, les_stat, cur_less FROM `$table` ORDER BY u_lesson_id");
+if (!$result) {
+  echo json_encode(array('username' => $_SESSION['username'], 'lessons' => $defaults, 'source' => 'default'));
+  exit();
+}
+
+$lessons = array();
+while ($row = $result->fetch_assoc()) {
+  $lessons[] = array(
+    'id' => (int) $row['u_lesson_id'],
+    'name' => $row['les_name'],
+    'code' => $row['les_loc'],
+    'done' => (bool) $row['les_stat'],
+    'current' => (bool) $row['cur_less'],
+  );
+}
+echo json_encode(array('username' => $_SESSION['username'], 'lessons' => $lessons, 'source' => 'database'));

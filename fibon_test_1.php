@@ -2,16 +2,13 @@
 session_start();
 require_once('functions_fibon.php');
 if (!isset($_SESSION['user_id'])) {
-    if (isset($_COOKIE['user_id']) && isset($_COOKIE['username'])) {
-      $_SESSION['user_id'] = $_COOKIE['user_id'];
-      $_SESSION['username'] = $_COOKIE['username'];    
-    }
+    echo '<p class="error">Please log in first.</p>';
+    exit();
   }
-    $dbc = $connection;
-    $query = "UPDATE student_info_1 SET test = true WHERE user_id = '" . $_SESSION['user_id'] . "'";     
-    $result = queryMysql($query)
-              or die('Error querying database.');
-              
-    mysqli_close($dbc);
-    echo '<p class="error">Thank you, ' . $_SESSION['username'] . 'the database has been updated.</p><br />'; 
+    $user_id = (int) $_SESSION['user_id'];
+    $stmt = otutorPrepare("UPDATE student_info_1 SET test = 1 WHERE user_id = ?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $stmt->close();
+    echo '<p class="error">Thank you, ' . htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8') . '. The database has been updated.</p><br />';
 ?>

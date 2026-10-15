@@ -19,11 +19,10 @@ echo <<<_END
   <div id="gamesHL2" class="concept_button_holder">
 _END;
 
-$user = $_SESSION['user_id'];
-$name = $user . $_SESSION['username'] . '_games';
-$dbc = mysqli_connect("localhost", "root", "", "students");
-$query = "SELECT * FROM $name";
-$data = mysqli_query($dbc, $query);
+$user = (int) $_SESSION['user_id'];
+$name = otutorUserTable('_games');
+$dbc = $connection;
+$data = $connection->query("SELECT * FROM `$name`");
 $butCount1 = 30;
 $butCount2 = 1;
 

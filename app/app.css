@@ -1,0 +1,73 @@
+body {
+  margin: 0;
+  font-family: "Varela Round", "Segoe UI", sans-serif;
+  background: #82a3b6;
+  color: #243844;
+}
+
+.app {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.card {
+  background: #fcebe1;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+h1 {
+  margin: 0 0 0.4rem;
+  font-size: 1.8rem;
+}
+
+label {
+  display: block;
+  margin-top: 0.8rem;
+  font-weight: 700;
+}
+
+input {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 3rem;
+  margin-top: 0.3rem;
+  font-size: 16px;
+  border-radius: 0.6rem;
+  border: 2px solid #243844;
+  padding: 0 0.7rem;
+}
+
+button,
+.back {
+  display: inline-block;
+  min-height: 3rem;
+  margin-top: 1rem;
+  margin-right: 0.5rem;
+  padding: 0.6rem 1rem;
+  border: 0;
+  border-radius: 999px;
+  background: #f09447;
+  color: #243844;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.error {
+  color: #8a2b12;
+  font-weight: 700;
+}
+
+ol {
+  padding-left: 1.2rem;
+}
+
+li {
+  margin: 0.7rem 0;
+}
+
+.current {
+  font-weight: 800;
+}

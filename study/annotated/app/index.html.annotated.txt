@@ -1,0 +1,20 @@
+FILE: app/index.html
+
+WHAT CHANGED
+The new front end. viewport is set. The only script is app.js, loaded as a module so import works.
+
+----- REAL FILE BELOW -----
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Otutor</title>
+    <link rel="stylesheet" href="app.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
