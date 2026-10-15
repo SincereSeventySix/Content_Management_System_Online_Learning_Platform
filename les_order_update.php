@@ -58,5 +58,4 @@
       echo '<p>You have unlocked the \'' . htmlspecialchars($next_toolN, ENT_QUOTES, 'UTF-8') . '\' tool. Find it in your <a href="fibon_concept.php">tools</a>.</p>';
       echo '<p>Your next video-lesson is ready. Find it <a href="fibon_fibon.php">here.</a></p><br>';
       echo '<p>Thank you for updating the database, '.  htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8') . '!</p>';
-    }
 ?>
