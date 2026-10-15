@@ -1,8 +1,7 @@
 <?php
-  // Local Docker sets OTUTOR_LOCAL so this machine can use an empty
-  // database password. A normal host keeps the password already stored here.
+  // Define database connection constants
   define('DB_HOST', 'localhost');
   define('DB_USER', 'root');
-  define('DB_PASSWORD', getenv('OTUTOR_LOCAL') ? '' : 'sincere76');
+  define('DB_PASSWORD', 'sincere76');
   define('DB_NAME', 'students');
 ?>
