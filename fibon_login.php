@@ -17,26 +17,36 @@
       $dbc = $connection;
 
       // Grab the user-entered log-in data
-      $user_username = sanitizeString($_POST['username']);
-      $user_password = sanitizeString($_POST['password']);
+      $user_username = trim($_POST['username'] ?? '');
+      $user_password = $_POST['password'] ?? '';
 
-      if (!empty($user_username) && !empty($user_password)) {
-        // Look up the username and password in the database
-        $query = "SELECT user_id, username FROM student_info_1 WHERE username = '$user_username' AND password = SHA('$user_password')";
-        $data = queryMysql($query);
+      if ($user_username !== '' && $user_password !== '') {
+        $stmt = otutorPrepare("SELECT user_id, username, password FROM student_info_1 WHERE username = ?");
+        $stmt->bind_param("s", $user_username);
+        $stmt->execute();
+        $stmt->bind_result($user_id, $username_row, $password_row);
+        $found = $stmt->fetch();
+        $stmt->close();
 
-        if (mysqli_num_rows($data) == 1) {
-          // The log-in is OK so set the user ID and username session vars (and cookies), and redirect to the home page
-          $row = mysqli_fetch_array($data);
-          $_SESSION['user_id'] = $row['user_id'];
-          $_SESSION['username'] = $row['username'];
-          setcookie('user_id', $row['user_id'], time() + 60 * 60 * 1 * 1);
-          setcookie('username', $row['username'], time() + 60 * 60 * 1 * 1);
+        if ($found && otutorPasswordOk($user_password, $password_row)) {
+          $info = password_get_info($password_row);
+          if ($info['algo'] === 0 || password_needs_rehash($password_row, PASSWORD_DEFAULT)) {
+            $upgraded = otutorPasswordHash($user_password);
+            $update = otutorPrepare("UPDATE student_info_1 SET password = ? WHERE user_id = ?");
+            $update->bind_param("si", $upgraded, $user_id);
+            $update->execute();
+            $update->close();
+          }
+          session_regenerate_id(true);
+          $_SESSION['user_id'] = $user_id;
+          $_SESSION['username'] = $username_row;
+          setcookie('user_id', '', time() - 3600, '/');
+          setcookie('username', '', time() - 3600, '/');
           $home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/fibon_fibon.php';
           header('Location: ' . $home_url);
+          exit();
         }
         else {
-          // The username/password are incorrect so set an error message
           $error_msg = "Sorry, you must enter a valid username and password to log in.";
           echo '<p class="error">'. $error_msg .'</p> <br />';
         }
@@ -51,7 +61,7 @@
        <table id="logInTable">
          <tr>
            <th><label for="username">Username:</label></th>
-           <td><input type="text" name="username" value="<?php if (!empty($user_username)) echo $user_username; ?>" /></td>
+           <td><input type="text" name="username" value="<?php if (!empty($user_username)) echo htmlspecialchars($user_username, ENT_QUOTES, 'UTF-8'); ?>" /></td>
          </tr>
 
          <tr>

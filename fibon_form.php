@@ -9,45 +9,54 @@ require_once('functions_fibon.php');
     
     if (isset($_POST['submit'])) {
 
-      $firstname = sanitizeString($_POST["firstname"]);
-      $lastname = sanitizeString($_POST["lastname"]);
-      $email = sanitizeString($_POST["email"]);
-      $student_name = sanitizeString($_POST["studentname"]);
-      $student_age = sanitizeString($_POST["studentage"]);
-      $student_gender = sanitizeString($_POST["student_gen"]);
-      $current_year = sanitizeString($_POST["curyear"]);
-      $username = sanitizeString($_POST["username"]);
-      $password1 = sanitizeString($_POST["password1"]);
-      $password2 = sanitizeString($_POST["password2"]);
-      $english_level = $_POST["english_lev"];
+      $firstname = sanitizeString($_POST["firstname"] ?? '');
+      $lastname = sanitizeString($_POST["lastname"] ?? '');
+      $email = trim($_POST["email"] ?? '');
+      $student_name = sanitizeString($_POST["studentname"] ?? '');
+      $student_age = sanitizeString($_POST["studentage"] ?? '');
+      $student_gender = sanitizeString($_POST["student_gen"] ?? '');
+      $current_year = sanitizeString($_POST["curyear"] ?? '');
+      $username = trim($_POST["username"] ?? '');
+      $password1 = $_POST["password1"] ?? '';
+      $password2 = $_POST["password2"] ?? '';
+      $english_level = $_POST["english_lev"] ?? '';
 
-      $query = "INSERT INTO student_info_1 (first_name, last_name, email, student_name, student_age, student_gen, username, password, current_year, english_level, join_date, profile, test, tool_count )" .// this has to match the names in the database
-      "VALUES ('$firstname', '$lastname', '$email', '$student_name', '$student_age', '$student_gender', '$username', SHA('$password2'), '$current_year', '$english_level', NOW(), '', false, '0')";
+      if ($username === '' || $password2 === '' || $password1 !== $password2) {
+        echo '<p class="error">Choose a username and type the same password twice.</p><br />';
+      } else {
+      $password_hash = otutorPasswordHash($password2);
+      $taken = otutorPrepare("SELECT user_id FROM student_info_1 WHERE username = ?");
+      $taken->bind_param("s", $username);
+      $taken->execute();
+      $taken->store_result();
+      $already = $taken->num_rows > 0;
+      $taken->close();
 
-      $result = queryMysql($query)
-                or die('Error querying database.');
+      if ($already) {
+        echo '<p class="error">That username is already taken.</p><br />';
+      } else {
+      $insert = otutorPrepare("INSERT INTO student_info_1 (first_name, last_name, email, student_name, student_age, student_gen, username, password, current_year, english_level, join_date, profile, test, tool_count) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), '', 0, '0')");
+      $insert->bind_param("ssssssssss", $firstname, $lastname, $email, $student_name, $student_age, $student_gender, $username, $password_hash, $current_year, $english_level);
+      $insert->execute();
+      $insert->close();
 
       mysqli_close($dbc);
 
-      echo '<p class="error">Thank you for enrolling your child, ' . $student_name . ' in Otutor. Check the email provided for your child\'s login information.</p><br />';
-      
-      //email to parents
-      $to = 'usertest@localhost';// later this would be whatever email is entered in the form
-      $subject = 'Classname Enrollment Successful';
-      // this is one long string broken up over several lins for clarity,
-      // its held together with " " and .
-      $msg = "Welcome to Classname. \n" .
-      "Your child, $student_name may login to Classname with the username:'$username' and the password:'$password2'. Please use these to log in to Classname.";
-       mail($to, $subject, $msg, 'From:' . $email);
+      echo '<p class="error">Thank you for enrolling your child, ' . htmlspecialchars($student_name, ENT_QUOTES, 'UTF-8') . ', in Otutor. Check the email provided for the username. The password is the one you just chose.</p><br />';
 
-       //email to admin
-      $to = 'noreply@localhost'; // later this will be the email submitted with the form
-      $subject = 'New Classname Enrollment';
-      // this is one long string broken up over several lins for clarity,
-      // its held together with " " and .
-      $msg = "$student_name has been enrolled in Classname. \n" .
-      "Contact parents at $email for orientation appointment.";
-       mail($to, $subject, $msg, 'From:' . $email);  
+      if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $subject = 'Otutor enrollment';
+        $msg = "Welcome to Otutor.\n" .
+          "Your child, $student_name, can log in with the username: $username.\n" .
+          "Use the password you chose on the enrollment form. Otutor does not send passwords by email.";
+        mail($email, $subject, $msg, "From: noreply@localhost\r\n");
+      }
+
+      $admin_subject = 'New Otutor enrollment';
+      $admin_msg = "$student_name has been enrolled in Otutor.\nContact the parent at $email for an orientation appointment.";
+      mail('noreply@localhost', $admin_subject, $admin_msg, "From: noreply@localhost\r\n");
+      }
+      }
     }
 
 echo <<<_END

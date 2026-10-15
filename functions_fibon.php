@@ -40,12 +40,33 @@ define('GW_MAXFILESIZE', 64768);
       }
   }
 
+  function otutorPasswordHash($password)
+  {
+    return password_hash($password, PASSWORD_DEFAULT);
+  }
+
+  function otutorPasswordOk($password, $stored)
+  {
+    if (!is_string($stored) || $stored === '') return false;
+    $info = password_get_info($stored);
+    if ($info['algo'] !== 0) return password_verify($password, $stored);
+    return hash_equals(strtolower($stored), sha1($password));
+  }
+
+  function otutorPrepare($sql)
+  {
+    global $connection;
+    $stmt = $connection->prepare($sql);
+    if (!$stmt) die("Fatal Error");
+    return $stmt;
+  }
+
   function sanitizeString($var)
   {
     global $connection;
     $var = strip_tags($var);
     $var = htmlentities($var);
-    if (get_magic_quotes_gpc())
+    if (function_exists('get_magic_quotes_gpc') && get_magic_quotes_gpc())
       $var = stripslashes($var);
     return $connection->real_escape_string($var);
   }
