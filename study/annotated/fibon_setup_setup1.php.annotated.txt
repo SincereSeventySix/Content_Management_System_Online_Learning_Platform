@@ -1,7 +1,7 @@
 FILE: fibon_setup_setup1.php
 
 WHAT CHANGED
-Creates the four personal tables from checked names. The posted test score is no longer pasted into the UPDATE. It is bound as an integer after the tables exist. Lesson rows store 0 and 1 instead of the words false and true.
+UNDONE. These pages were changed to use ? placeholders. That change has been reverted. The file below is the earlier version again: the video title, tool name, and table name are written into the SQL string, because those names are part of how these functions find a lesson. The new login, the signup email, and the React page in app/ were not reverted.
 
 ----- REAL FILE BELOW -----
 
@@ -21,23 +21,42 @@ Creates the four personal tables from checked names. The posted test score is no
 
       $link = mysqli_connect("localhost", "root", "", "students");
 
-      $user = (int) $_SESSION['user_id'];
-      $test = isset($_POST['testVal']) ? (int) $_POST['testVal'] : 0;
+      $user = $_SESSION['user_id'];
+      $test = $_POST['testVal'];
 
-      $name = otutorUserTable('_les_order');
-      $name2 = otutorUserTable('_saved_vid');
-      $name3 = otutorUserTable('_tools');
-      $name4 = otutorUserTable('_games');
+      $name = $user . $_SESSION['username'] . '_les_order';
+      $id = 'u_lesson_id';
+      $l_name = 'les_name';
+      $l_loc = 'les_loc';
+      $l_stat = 'les_stat';
+      $l_cur = 'cur_less';
 
-      $query = "CREATE TABLE `$name` ( u_lesson_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, les_name VARCHAR(80) NOT NULL, les_loc VARCHAR(60) NOT NULL, les_stat TINYINT(1), cur_less TINYINT(1));";
-      $query .= "CREATE TABLE `$name2` ( u_saved_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, savdvid_name VARCHAR(60) NOT NULL, savid_loc VARCHAR(100));";
-      $query .= "CREATE TABLE `$name3` ( u_tools_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, tool_name VARCHAR(60) NOT NULL, tool_loc VARCHAR(100));";
-      $query .= "CREATE TABLE `$name4` ( u_games_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, game_name VARCHAR(60) NOT NULL, game_loc VARCHAR(100));";
-      $query .= "INSERT INTO `$name3` (tool_name, tool_loc) VALUES ('tool_vow', 'Vowel-Tool');";
-      $query .= "INSERT INTO `$name` (les_name, les_loc, les_stat, cur_less) VALUES ('Nouns: The Biggest Family', 'less_nouns1', 0, 1);";
-      $query .= "INSERT INTO `$name` (les_name, les_loc, les_stat, cur_less) VALUES ('Pronouns: Professional Nouns', 'less_proN1', 0, 0);";
-      $query .= "INSERT INTO `$name` (les_name, les_loc, les_stat, cur_less) VALUES ('Verbs: The Sentencevile Doers', 'less_verbs1', 0, 0);";
-      $query .= "INSERT INTO `$name` (les_name, les_loc, les_stat, cur_less) VALUES ('Adjectives: Fishing for Fun', 'less_adj1', 0, 0);";
+      $name2 = $user . $_SESSION['username'] . '_saved_vid';
+      $id2 = 'u_saved_id';
+      $sav_name = 'savdvid_name';
+      $sav_loc  = 'savid_loc';
+
+      $name3 = $user . $_SESSION['username'] . '_tools';
+      $id3 = 'u_tools_id';
+      $tool_name = 'tool_name';
+      $tool_loc  = 'tool_loc';
+
+      $name4 = $user . $_SESSION['username'] . '_games';
+      $id4 = 'u_games_id';
+      $game_name = 'game_name';
+      $game_loc  = 'game_loc';
+
+      $query = "CREATE TABLE {$name} ( $id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, $l_name VARCHAR(80) NOT NULL, $l_loc VARCHAR(60) NOT NULL, $l_stat TINYINT(1), $l_cur TINYINT(1));";
+      $query .= "CREATE TABLE {$name2} ( $id2 INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, $sav_name VARCHAR(60) NOT NULL, $sav_loc VARCHAR(100));";
+      $query .= "CREATE TABLE {$name3} ( $id3 INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, $tool_name VARCHAR(60) NOT NULL, $tool_loc VARCHAR(100));";
+      $query .= "CREATE TABLE {$name4} ( $id3 INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, $game_name VARCHAR(60) NOT NULL, $game_loc VARCHAR(100));";
+      $query .= "INSERT INTO {$name3} ($tool_name, $tool_loc) VALUES ('tool_vow', 'Vowel-Tool');";
+      $query .= "INSERT INTO {$name} ($l_name, $l_loc, $l_stat, $l_cur) VALUES ('Nouns: The Biggest Family', 'less_nouns1', 'false', true);";
+      $query .= "INSERT INTO {$name} ($l_name, $l_loc, $l_stat, $l_cur) VALUES ('Pronouns: Professional Nouns', 'less_proN1', 'false', 'false');";
+      $query .= "INSERT INTO {$name} ($l_name, $l_loc, $l_stat, $l_cur) VALUES ('Verbs: The Sentencevile Doers', 'less_verbs1', 'false', 'false');";
+      $query .= "INSERT INTO {$name} ($l_name, $l_loc, $l_stat, $l_cur) VALUES ('Adjectives: Fishing for Fun', 'less_adj1', 'false', 'false');";
+      $query .= "UPDATE student_info_1 SET tool_count = '$test' WHERE user_id = $user;";
+      $query .= "UPDATE student_info_1 SET test = '$test' WHERE user_id = $user ";
   
 
     if (mysqli_multi_query($link, $query)) {
@@ -48,10 +67,6 @@ Creates the four personal tables from checked names. The posted test score is no
                 }
             }
         } while (mysqli_next_result($link));
-            $mark = otutorPrepare("UPDATE student_info_1 SET tool_count = ?, test = ? WHERE user_id = ?");
-            $mark->bind_param("iii", $test, $test, $user);
-            $mark->execute();
-            $mark->close();
             $error_msg = "";
             $error_msg = "Your Otutor is ready, " . $_SESSION['username'] . ".";
             echo '<p class="login">' . $error_msg . '</p>';

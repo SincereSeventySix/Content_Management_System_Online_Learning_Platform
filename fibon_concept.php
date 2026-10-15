@@ -21,10 +21,11 @@ echo <<<_END
     <div id="toolHL" class="cph_outer">
       <div id="toolHL2" class="concept_button_holder">
 _END;
-$user = (int) $_SESSION['user_id'];
-$name = otutorUserTable('_tools');
-$dbc = $connection;
-$data = $connection->query("SELECT * FROM `$name`");
+$user = $_SESSION['user_id'];
+$name = $user . $_SESSION['username'] . '_tools';
+$dbc = mysqli_connect("localhost", "root", "", "students");
+$query = "SELECT * FROM $name";
+$data = mysqli_query($dbc, $query);
 $butCount1 = 30;
 $butCount2 = 1;
 

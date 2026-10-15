@@ -1,7 +1,7 @@
 FILE: fibon_games.php
 
 WHAT CHANGED
-Same change as the video page, for the _games table.
+UNDONE. These pages were changed to use ? placeholders. That change has been reverted. The file below is the earlier version again: the video title, tool name, and table name are written into the SQL string, because those names are part of how these functions find a lesson. The new login, the signup email, and the React page in app/ were not reverted.
 
 ----- REAL FILE BELOW -----
 
@@ -26,10 +26,11 @@ echo <<<_END
   <div id="gamesHL2" class="concept_button_holder">
 _END;
 
-$user = (int) $_SESSION['user_id'];
-$name = otutorUserTable('_games');
-$dbc = $connection;
-$data = $connection->query("SELECT * FROM `$name`");
+$user = $_SESSION['user_id'];
+$name = $user . $_SESSION['username'] . '_games';
+$dbc = mysqli_connect("localhost", "root", "", "students");
+$query = "SELECT * FROM $name";
+$data = mysqli_query($dbc, $query);
 $butCount1 = 30;
 $butCount2 = 1;
 

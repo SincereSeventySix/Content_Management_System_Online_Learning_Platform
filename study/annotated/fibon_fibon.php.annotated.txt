@@ -1,7 +1,7 @@
 FILE: fibon_fibon.php
 
 WHAT CHANGED
-The test flag is read with SELECT test FROM student_info_1 WHERE user_id = ?. The column name is no longer a variable pasted into the query, and the page uses the connection from functions_fibon.php instead of a second login as root.
+UNDONE. These pages were changed to use ? placeholders. That change has been reverted. The file below is the earlier version again: the video title, tool name, and table name are written into the SQL string, because those names are part of how these functions find a lesson. The new login, the signup email, and the React page in app/ were not reverted.
 
 ----- REAL FILE BELOW -----
 
@@ -16,9 +16,11 @@ The test flag is read with SELECT test FROM student_info_1 WHERE user_id = ?. Th
    
   $testVal = 'test';
   $session_user = $_SESSION['username'];
-  $dbc = $connection;
-  $rows = otutorRows("SELECT test FROM student_info_1 WHERE user_id = ?", "i", array((int) $_SESSION['user_id']));
-  $teval = isset($rows[0]['test']) ? $rows[0]['test'] : 0;
+  $dbc = mysqli_connect("localhost", "root", "", "students");
+  $query = "SELECT $testVal FROM student_info_1 WHERE user_id = '" . $_SESSION['user_id'] . "'";
+  $data = mysqli_query($dbc, $query);
+  $row = mysqli_fetch_array($data);
+  $teval = $row['test'];
 
     if ($teval == 0) {
       echo '<p id="errorTest">Test not Taken</p>'; 

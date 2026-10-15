@@ -9,9 +9,11 @@
    
   $testVal = 'test';
   $session_user = $_SESSION['username'];
-  $dbc = $connection;
-  $rows = otutorRows("SELECT test FROM student_info_1 WHERE user_id = ?", "i", array((int) $_SESSION['user_id']));
-  $teval = isset($rows[0]['test']) ? $rows[0]['test'] : 0;
+  $dbc = mysqli_connect("localhost", "root", "", "students");
+  $query = "SELECT $testVal FROM student_info_1 WHERE user_id = '" . $_SESSION['user_id'] . "'";
+  $data = mysqli_query($dbc, $query);
+  $row = mysqli_fetch_array($data);
+  $teval = $row['test'];
 
     if ($teval == 0) {
       echo '<p id="errorTest">Test not Taken</p>'; 

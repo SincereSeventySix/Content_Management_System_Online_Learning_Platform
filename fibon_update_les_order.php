@@ -7,29 +7,41 @@
   $error_msg = $_SESSION['username'] . ', Update and Save Your Progress!';
   echo '<p class="login">' . $error_msg . '</p>';
 
-  $user = (int) $_SESSION['user_id'];
-  $name = otutorUserTable('_les_order');
-  $dbc = $connection;
-  $data = $connection->query("SELECT u_lesson_id, les_name, les_loc FROM `$name` WHERE les_stat = 0 AND cur_less = 1");
+  $user = $_SESSION['user_id'];
+  $name = $user . $_SESSION['username'] . '_les_order';
+  $dbc = mysqli_connect("localhost", "root", "", "students");
+  $query = "SELECT u_lesson_id, les_name, les_loc FROM $name WHERE les_stat= '0' AND cur_less= '1'";
+  $data = mysqli_query($dbc, $query);
    
   if ($row = mysqli_fetch_array($data)) {
     $less_id = $row['u_lesson_id'];
     $less_name = $row['les_name'];
     $less_loc = $row['les_loc'];
   }
+  mysqli_close($dbc);
 
 
-  $rows = otutorRows("SELECT tool_count FROM student_info_1 WHERE user_id = ?", "i", array($user));
-  if (isset($rows[0])) {
-    $tool_count = $rows[0]['tool_count'];
+  $centralDB = 'student_info_1';
+  $dbc = mysqli_connect("localhost", "root", "", "students");
+  $query = "SELECT tool_count FROM $centralDB WHERE user_id = '$user'";
+  $data = mysqli_query($dbc, $query);
+
+  if ($row = mysqli_fetch_array($data)) {
+    $tool_count = $row['tool_count'];
   }
-  $new_tool_id = $tool_count + 1;
+  $new_tool_id = $tool_count+1;
+  mysqli_close($dbc);
 
-  $tool_rows = otutorRows("SELECT tool_name, tool_loc FROM tool_central WHERE tool_id = ?", "i", array((int) $new_tool_id));
-  if (isset($tool_rows[0])) {
-    $next_one_id = $tool_rows[0]['tool_name'];
-    $next_one_name = $tool_rows[0]['tool_loc'];
+  $toolDB = 'tool_central';
+  $dbc = mysqli_connect("localhost", "root", "", "students");
+  $query = "SELECT tool_name, tool_loc FROM $toolDB WHERE tool_id = '$new_tool_id'";
+  $data = mysqli_query($dbc, $query);
+
+  if ($row = mysqli_fetch_array($data)) {
+    $next_one_id = $row['tool_name'];
+    $next_one_name = $row['tool_loc'];
   }
+  mysqli_close($dbc);
 
   echo <<<_END
   <div>

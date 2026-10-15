@@ -32,10 +32,11 @@ echo <<<_END
          
 _END;
 
-$user = (int) $_SESSION['user_id'];
-$name = otutorUserTable('_les_order');
-$dbc = $connection;
-$data = $connection->query("SELECT * FROM `$name`");
+$user = $_SESSION['user_id'];
+$name = $user . $_SESSION['username'] . '_les_order';
+$dbc = mysqli_connect("localhost", "root", "", "students");
+$query = "SELECT * FROM $name";
+$data = mysqli_query($dbc, $query);
 $butCount1 = 30;
 $butCount2 = 1;
 

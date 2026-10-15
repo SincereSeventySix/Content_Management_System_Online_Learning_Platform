@@ -14,7 +14,7 @@ Open the new page at `app/index.html` after the site is on PHP. It will not run 
 4. `startsession.php`. A cookie used to be enough to log in. It is not anymore. The session is the login.
 5. `api/login.php`, `api/lessons.php`, `api/logout.php`. These are the server half of a full-stack app. They answer in JSON instead of printing a whole HTML page.
 6. `app/index.html`, `app/app.js`, `app/app.css`. This is the browser half. React draws the screen. `fetch` asks the API. You do not need a build tool to read it. A job site would usually compile JSX. `htm` is used here so the file stays readable.
-7. The lesson, game, tool, and saved pages, plus profile, test, and progress updates. Queries that used to paste a username or a posted value into SQL now use `?` or a checked table name.
+7. The lesson, game, tool, and progress pages were briefly switched to `?` placeholders. That change is undone. Those pages again build the query with the video title and the table name written into the string, which is what their functions expect. Do not study those eight files as examples of prepared statements.
 
 ## A request, in one picture
 

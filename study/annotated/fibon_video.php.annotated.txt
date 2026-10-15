@@ -1,7 +1,7 @@
 FILE: fibon_video.php
 
 WHAT CHANGED
-Lesson rows come from a table name built by otutorUserTable. The username is not concatenated into SQL anymore.
+UNDONE. These pages were changed to use ? placeholders. That change has been reverted. The file below is the earlier version again: the video title, tool name, and table name are written into the SQL string, because those names are part of how these functions find a lesson. The new login, the signup email, and the React page in app/ were not reverted.
 
 ----- REAL FILE BELOW -----
 
@@ -39,10 +39,11 @@ echo <<<_END
          
 _END;
 
-$user = (int) $_SESSION['user_id'];
-$name = otutorUserTable('_les_order');
-$dbc = $connection;
-$data = $connection->query("SELECT * FROM `$name`");
+$user = $_SESSION['user_id'];
+$name = $user . $_SESSION['username'] . '_les_order';
+$dbc = mysqli_connect("localhost", "root", "", "students");
+$query = "SELECT * FROM $name";
+$data = mysqli_query($dbc, $query);
 $butCount1 = 30;
 $butCount2 = 1;
 
